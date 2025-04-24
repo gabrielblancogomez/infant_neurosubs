@@ -1,3 +1,10 @@
+## Mplus Modelling Automation Script
+
+# Author: Gabriel Blanco Gomez
+# Date: 2025-05-01
+# Description: This script automates the process of running Latent Profile Analysis (LPA) using Mplus for different variable sets and class solutions. 
+# It generates input files, runs the analyses, and saves the results.
+
 # Function to automate LPA analysis for classes 2-5 with multiple variable sets
 run_comprehensive_lpa <- function(base_dir = "Datasets") {
   # Load required packages
