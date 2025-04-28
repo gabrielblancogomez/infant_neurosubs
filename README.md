@@ -55,7 +55,7 @@ Early EEG measures can predict distinct language development trajectories, highl
 
 ## EEG Data access
 
-Data usde in all these analyses comes from this study and its available upon reasonable request: 
+Data used in all these analyses comes from this study and its available upon reasonable request: 
  
 van Noordt, S., Desjardins, J.A., Huberty, S. et al. EEG-IP: an international infant EEG data integration platform for the study of risk and resilience in autism and related conditions. Mol Med 26, 40 (2020). https://doi.org/10.1186/s10020-020-00149-3
 
