@@ -6,13 +6,7 @@ This study examines EEG measures in infants (n=144) from the EEG-IP dataset, usi
 
 
 ## Data summary visualization
-A visual summary of all graphs and analyzes can be found here: .
-
-
-
-## Dashboard Overview
-
-A live dashboard [Infant EEG Dashboard](https://https://gabrielblancogomez.github.io/infant_neurosubs_dashboard) visualizes:
+A visual summary of all graphs and analyzes can be found here:[Infant EEG Dashboard](https://https://gabrielblancogomez.github.io/infant_neurosubs_dashboard): 
 
 - **Study Overview**: Summary of sample demographics and analytical methods.
 - **Class Identification**: EEG-based subtypes identified using LPA and HC.
