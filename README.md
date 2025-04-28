@@ -45,8 +45,6 @@ Early EEG measures can predict distinct language development trajectories, highl
   3. Apply clustering with `Hierarchical_clustering_SKklearn.ipynb` and `NBClust_selection.R`.
   4. Analyze language outcomes using `Linear_Mixed_effects_modelling_language.R`.
   5. Visualize outputs with `Visualization_brain_regions.R` and `Tables_and_Figures.ipynb`.
-  6. View the summary dashboard by opening `index.html` in a browser.
-
 
 ## Authors
 
