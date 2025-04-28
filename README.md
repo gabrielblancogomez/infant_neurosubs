@@ -62,7 +62,7 @@ van Noordt, S., Desjardins, J.A., Huberty, S. et al. EEG-IP: an international in
 
 ## Acknowledgements
 
-The authors would like all families who took part in this study, as well as the mentors who helped with this project. Special thanks to Myriam Beauchamps, James Desjardins, Diksha Srishyla, Scott Huberty, Julie Scorah and Shoi Shi.
+The authors would like to thank all families who took part in this study, as well as the mentors who helped with this project. Special thanks to Myriam Beauchamps, James Desjardins, Diksha Srishyla, Scott Huberty, Julie Scorah and Shoi Shi.
 
 ## Badges
 
