@@ -29,7 +29,7 @@ Early EEG measures can predict distinct language development trajectories, highl
 
 | File/Script | Description |
 |:------------|:------------|
-| `Feature_extraction.ipynb` | Extracts EEG features (gamma power, network connectivity, spectral lateralization) from raw data. |
+| `Feature_extraction.ipynb` | Extracts EEG features (gamma power, frontal power, Connectivity Auditory Network and Connectivity Speech Network. |
 | `Hierarchical_clustering_SKklearn.ipynb` | Performs hierarchical clustering on EEG features to identify distinct neurophysiological subgroups. |
 | `NBClust_selection.R` | Determines the optimal number of clusters for EEG data using various statistical indices. |
 | `Linear_Mixed_effects_modelling_language.R` | Analyzes language development trajectories over time using linear mixed-effects models. |
