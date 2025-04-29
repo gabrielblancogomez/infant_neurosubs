@@ -51,10 +51,13 @@ Data used in all these analyses comes from this study and its available upon rea
  
 van Noordt, S., Desjardins, J.A., Huberty, S. et al. EEG-IP: an international infant EEG data integration platform for the study of risk and resilience in autism and related conditions. Mol Med 26, 40 (2020). https://doi.org/10.1186/s10020-020-00149-3
 
+## Reusability 
+The intended use of this code is to allow researchers to replicate and extend EEG-based subtype analyses in developmental neuroscience, or to adapt these methods for other types of multivariate biosignal data. Researchers can reuse individual components (e.g., the clustering pipeline or EEG feature extraction scripts) in their own projects, enabling broader scientific reproducibility.
+
 
 ## Acknowledgements
 
-The authors would like to thank all families who took part in this study, as well as the mentors who helped with this project. Special thanks to Myriam Beauchamps, James Desjardins, Diksha Srishyla, Scott Huberty, Julie Scorah and Shoi Shi.
+The authors would like to thank all families who took part in this study. Special thanks to Myriam Beauchamps, James Desjardins, Diksha Srishyla, Scott Huberty, Julie Scorah and Shoi Shi.
 
 ## Badges
 
