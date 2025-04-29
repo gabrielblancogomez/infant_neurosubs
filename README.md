@@ -57,7 +57,7 @@ The intended use of this code is to allow researchers to replicate and extend EE
 
 ## Acknowledgements
 
-The authors would like to thank all families who took part in this study. Special thanks to Myriam Beauchamps, James Desjardins, Diksha Srishyla, Scott Huberty, Julie Scorah and Shoi Shi.
+The authors would like to thank all families who took part in this study. Special thanks to the co-auhors in this study Christian O'Reilly, Sarah Webb, Mayada Elsabbagh and the BASIS team. As well as other collaborators, Myriam Beauchamps, James Desjardins, Diksha Srishyla, Scott Huberty, Julie Scorah and Shoi Shi.
 
 ## Badges
 
