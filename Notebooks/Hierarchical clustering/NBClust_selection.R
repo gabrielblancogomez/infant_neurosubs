@@ -15,10 +15,10 @@ library(clValid)
 
 
 
-# fix the functions
+# Functions
 fviz_nbclust_2 <- function (x, FUNcluster = NULL, method = c("silhouette", "wss", 
                                                            "gap_stat"), diss = NULL, k.max = 10, nboot = 100, verbose = interactive(), 
-                          barfill = "steelblue", barcolor = "steelblue", linecolor = "steelblue", 
+                          barfill = "#184e77", barcolor = "#184e77", linecolor = "#184e77", 
                           print.summary = TRUE, ...) 
 {
   set.seed(123)
@@ -86,8 +86,8 @@ fviz_nbclust_2 <- function (x, FUNcluster = NULL, method = c("silhouette", "wss"
   }
 }
 
-.viz_NbClust <- function (x, print.summary = TRUE, barfill = "steelblue", 
-                          barcolor = "steelblue") 
+.viz_NbClust <- function (x, print.summary = TRUE, barfill = "#184e77", 
+                          barcolor = "#184e77") 
 {
   best_nc <- x$Best.nc
   if (any(class(best_nc) == "numeric") )
@@ -167,10 +167,14 @@ for (file in csv_files) {
   print(basename(file))
   cat("Reading:", basename(file), "\n")
   
+  # Normalize the data
+  com_df <- com_df %>% 
+    mutate(across(everything(), ~ (.-min(.))/(max(.)-min(.))))
+  
   # Calculate best number of clusters based on NB clust
   
   nb <- NbClust(com_df, distance = "euclidean", min.nc = 2,
-                max.nc = 4, method = "ward.D2")
+                max.nc = 5, method = "ward.D2")
   
   # Extract the NBClust best choice 
   indices<-t(nb$Best.nc)[,1]
@@ -193,10 +197,7 @@ for (file in csv_files) {
   
   t(nb$Best.nc)
   
-  # Create label for best KL score
-  
-  #kl= paste0("KL is =", t(nb$Best.nc)[1])
-  
+
   # Create label for best Siljouette score
   
   sil=paste0("Highest silhouette is:",t(nb$Best.nc)[13,2])
@@ -207,12 +208,8 @@ for (file in csv_files) {
   # Create PDF file
   pdf(file = pdf_file, width = 12, height = 6)  # Adjust width and height as needed
   
-  p1 <- fviz_nbclust_2(nb)+
-    annotate("text", x = Inf, y = Inf, label = basename(file),
-             hjust = 2.9, vjust =1, size = 4, color = "red") + 
-    annotate("text", x = Inf, y = Inf, label = kl,
-             hjust = 1.1, vjust =1, size = 4, color = "black") 
-  
+  p1 <- fviz_nbclust_2(nb)
+
   p2 <- # Elbow method
     fviz_nbclust(com_df, kmeans, method = "wss") +
     geom_vline(xintercept = 4, linetype = 2)+
@@ -229,6 +226,11 @@ for (file in csv_files) {
   # Arrange grid
   grid.arrange(p1, p2, p3, nrow = 1)
   dev.off()
+  
+  # Save P1 as png
+  png_file <- paste0("C:/Users/gabot/OneDrive - McGill University/Desktop/Github_repos/infant_neurosubs/Figures/NBCLUST/NBCLUST_" , basename(file),date, ".png")
+  
+  ggsave(p1, filename = png_file, width = 6, height = 8) # Adjust width and height as needed
   
 
   
