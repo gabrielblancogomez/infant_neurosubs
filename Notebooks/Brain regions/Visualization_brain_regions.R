@@ -1,13 +1,12 @@
-# Install and load required packages
-if (!require("ggseg")) install.packages("ggseg")
-if (!require("ggplot2")) install.packages("ggplot2")
-if (!require("dplyr")) install.packages("dplyr")
-if (!require("tibble")) install.packages("tibble")
+# Create visualizations
 
 library(ggseg)
 library(ggplot2)
 library(dplyr)
+library(ggseg3d)
 library(tibble)
+library(tidyr)
+library(htmlwidgets)
 # Define the color palette
 
 brain_labels(dk)
@@ -133,6 +132,21 @@ combined_plot
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 
+# Create one figure with random pvalues
+# Create a function to plot brain regions with random p-values
+
+# Sample brain regions for each feature
+sample_brain_data <-tibble(
+  region = rep(lang_comp_regions, each = 2),
+  p = runif(length(lang_comp_regions) * 2, min = 0, max = 1),
+  hemi = rep(c("left", "right"), times = length(lang_comp_regions)),
+  feature = "Connectivity Language"
+)
+
+
+sample_brain_data_plot <- plot_brain_regions("Brain Example", sample_brain_data)
+sample_brain_data_plot
+
 # Save the combined plot
 ggsave("../../Figures/Supplementary/2025_04_23/brain_regions_combined.png", combined_plot, width = 12, height = 9, dpi = 300)
 ggsave("../Visuals/dashboard_source/brain_regions_combined.png", combined_plot, width = 12, height = 9, dpi = 300)
@@ -143,4 +157,63 @@ ggsave("../../Figures/Supplementary/2025_04_23/gamma_lateralization.png", gamma_
 ggsave("../../Figures/Supplementary/2025_04_23/connectivity_language.png", lang_comp_plot, width = 6, height = 5, dpi = 300)
 ggsave("../../Figures/Supplementary/2025_04_23/connectivity_speech.png", speech_plot, width = 6, height = 5, dpi = 300)
 ggsave("../../Figures/Supplementary/2025_04_23/connectivity_auditory.png", auditory_plot, width = 6, height = 5, dpi = 300)
+# Save the random p-values plot
+ggsave("../../Figures/Supplementary/2025_04_23/sample_brain_data.png", sample_brain_data_plot, width = 6, height = 5, dpi = 300)
 
+
+# Create 3D model
+
+# Place all regions into one vector
+# Combine all into a unique vector
+all_regions <- unique(c(frontal_gamma_regions,
+                        gamma_lateralization_regions,
+                        lang_comp_regions,
+                        speech_regions,
+                        auditory_regions))
+all_regions
+
+
+# Create tiblle with all brain regions 
+infant_subs_3d = dk_3d %>% 
+  filter(surf == "inflated" & hemi == "left") %>% 
+  unnest(ggseg_3d) %>% 
+  ungroup() %>% 
+  select(region) %>% 
+  na.omit() %>% 
+  mutate(p = sample(seq(0,.5, length.out = 100 ), nrow(.)) %>% 
+           round(2)) 
+
+
+# Create tiblle with all brain regions 
+infant_subs_3d = dk_3d %>% 
+  filter(surf == "inflated" & hemi == "left") %>% 
+  unnest(ggseg_3d) %>% 
+  ungroup() %>%
+  
+  # Change colour to blue if inside all regions, grey if not
+  mutate(colour = ifelse(region %in% all_regions, "lightblue", "gray")) %>%
+
+select(region) %>% 
+  na.omit() %>% 
+  mutate(p = sample(seq(0,.5, length.out = 100 ), nrow(.)) %>% 
+           round(2)) 
+
+# Update the p-values column using just the regions in this study
+infant_subs_3d$p <- ifelse(infant_subs_3d$region %in% speech_regions, 0.9, 0.001)
+
+# Create a 3D plot
+three_d_plot <- ggseg3d(.data = infant_subs_3d, 
+        atlas = dk_3d,
+        show.legend = FALSE, 
+        
+        colour="p") %>% 
+  pan_camera("right lateral") %>%
+  remove_axes() 
+three_d_plot
+
+# Save html using htmlwidgets
+saveWidget(three_d_plot, 
+  file = "../../Figures/Supplementary/2025_04_23/3d_brain_regions.html", 
+                         selfcontained = TRUE)
+
+ 
